@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../static/css/Upload.css" rel="stylesheet">
+    <title>Upload</title>
+</head>
+<body>
+    <div class="Navigation">
+        <a href="https://reva.edu.in">Reva University</a>
+        <a href="https://rulms.reva.edu.in">Moodle</a>
+        <a href="{{url_for('search')}}">Search</a>
+        <a href="{{url_for('logout')}}">Logout</a>
+    </div>
+    <div class="images" style="max-width:600px">
+        <h2>
+            Upload your Projects!!!
+        </h2>
+        <img class="mySlides" src="../static/img/img4.jpg" style="width:100%">
+        <img class="mySlides" src="../static/img/img5.jpg" style="width:100%">
+        <img class="mySlides" src="../static/img/img6.jpg" style="width:100%">
+        <img class="mySlides" src="../static/img/img1.jpg" style="width:100%">
+        <img class="mySlides" src="../static/img/img2.jpg" style="width:100%">
+        <img class="mySlides" src="../static/img/img3.jpg" style="width:100%">
+      </div>
+    <div class="feilds">
+    <div class="notes">
+        <ol>
+            <li>
+                Please Upload the files in PDF format only !
+            </li>
+            <li>
+                Make sure that the file size is less than 2MB !
+            </li>
+            <li>
+                Please give the title as mentioned in the REPORT/CONFERENCE paper !
+            </li>
+        </ol>
+    </div>
+        <h3>Upload</h3>
+        <form action="{{url_for('upload_file')}}" method="POST" enctype="multipart/form-data">
+            <input type="text" placeholder="Title" name="title" required/>
+            <input type="text" placeholder="GroupNo" name="GroupNo" required/>
+            <input type="text" placeholder="year" name="year" required/>
+            <input type="text" placeholder="GuideName" name="Gname" required/>
+            <input type="file" name="filename" required/>
+            <button type="submit" class="button">submit</button>
+        </form>
+    </div>
+
+
+    <script>
+        var myIndex = 0;
+        carousel();
+        
+        function carousel() {
+          var i;
+          var x = document.getElementsByClassName("mySlides");
+          for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";  
+          }
+          myIndex++;
+          if (myIndex > x.length) {myIndex = 1}    
+          x[myIndex-1].style.display = "block";  
+          setTimeout(carousel, 2000); // Change image every 2 seconds
+        }
+        </script>
+
+</body>
+</html>
+

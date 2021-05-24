@@ -1,0 +1,16 @@
+{%extends 'base.html'%}
+{%block head%}
+
+
+
+{%endblock%}
+{%block body%}
+<div class="msg">{{ msg }}</div> 
+<form action="{{ url_for('signup') }}" method="POST">
+    <input type="text" placeholder="username" name="username"/><br/>
+    <input type="text" placeholder="password" name="pass"/><br/>
+    <input type="text" placeholder="Re-Enter Password" name="passcheck"/><br/>
+    <input type="submit" name="submit"/>
+</form>
+
+{%endblock%}

@@ -1,0 +1,97 @@
+body{
+    background-image:url("../img/background.png");
+    background-size: cover;
+    background-repeat:no-repeat;
+}
+.Navigation{
+    background-color: rgba(0,0,0, 0.3);
+    min-width:100%;
+    height: 50px;
+    margin:-10px -10px -10px;
+    z-index:-1;
+}
+.Navigation a{
+    text-decoration: none;
+    margin-right: 20px;
+    margin-top:15px;
+    float: right;
+    opacity: 1;
+    color :white;
+    z-index: 0;
+}
+.Navigation a:hover{
+    color:#ee8327;
+    opacity: 1;
+    z-index: 1;
+}
+.content{
+    min-width:100px;
+    height:800px;
+    margin-top: 9px;
+    margin-left:-9px;
+    overflow-x: hidden;
+
+}
+.files{
+    background-color:white;
+    height:100px;
+    width:800px;
+    margin-left:43%;
+    display: block;
+    margin-bottom:20px;
+    border-radius: 10px;
+    box-shadow:10px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+.files a{
+    text-decoration: none;
+    font-family:'Times New Roman', Times, serif;
+    font-size:20px;
+    color:black;
+    width: fit-content;
+}
+.files a:hover{
+    color:#ee8327;
+}
+.files:hover{
+    transform: scale(1.1);
+    transition:0.7s ease-in-out;
+}
+.searchbar input{
+    width:450px;
+    height: 30px;
+    margin-left: 40px;
+    margin-top: 50px;
+    border-radius: 2px;
+    border: white 1px hidden;
+    font-size: small;
+
+}
+.searchbar button{
+    width: 70px;
+    height:31px;
+    border: white 1px hidden;
+    border-radius: 2px;
+    background-color: white;
+    margin-top: -2px;
+}
+.searchbar i{
+    font-size: 14px;
+}
+.errormsg img{
+    max-width: 500px;
+    margin-top:30px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border-radius:5px;
+}
+.errormsg p,h3{
+    text-align: center;
+    color:white;
+    font-family:'Courier New', Courier, monospace;
+    font-size: large;
+}
+

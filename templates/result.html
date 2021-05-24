@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../static/css/search.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>result</title>
+</head>
+<body>
+    <div class="Navigation">
+        <a href="https://reva.edu.in">Reva University</a>
+        <a href="https://rulms.reva.edu.in">Moodle</a>
+        <a href="{{url_for('search')}}">Search</a>
+        <a href="{{url_for('logout')}}">Logout</a>
+    </div>
+    <div class="searchbar">
+        <form action="{{url_for('result')}}" method="POST">
+            <input type="text" placeholder="  Search.." name='reqtitle' required>
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+    <div class="content">
+        {% if data|length > 0 %}
+            {% for item in data %}
+               <div class="files">
+                <a href="{{url_for('download', title=item['title']) }}">
+                 <p>Title: {{item['title']}}</p>
+                 <p>Guide: {{item['Gname']}}</p>
+                </a>
+               </div> 
+            {% endfor %}
+        {% else %}
+               <div class="errormsg">
+                   <img src="../static/img/noresults.png" alt="error"/>
+                   <H3>We're sorry</H3>
+                   <p>But there's no result!!</p>
+               </div>
+        {% endif %}
+    </div>
+</body>
+<script>
+</script>
+</html>
