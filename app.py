@@ -116,7 +116,7 @@ def download(title):
         data = cursor.fetchone()
         resName=data['UPfilename']
         print(resName)
-        location="https://github.com/clashercherry/RevaProjects/blob/main/download.pdf"
+        location="/home/cherry/RevaProjects/download.pdf"
         blob_service.get_blob_to_path(container,resName,location)
         return send_file(location)
     else:
