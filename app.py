@@ -124,7 +124,7 @@ def download(title):
             resName=data['UPfilename']
             print(resName)
             reqfiles=resName
-            location="static/files/"+resName
+            location="/home/cherry/RevaProjects/static/files/"+resName
             blob_service.get_blob_to_path(container,resName,location)
             #return send_file(location)
             return redirect(url_for('preview'))
