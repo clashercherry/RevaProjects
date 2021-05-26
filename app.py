@@ -78,7 +78,7 @@ def signup():
             else:
                 cursor.execute(
                 'INSERT INTO users(username,password)values(%s,%s)', (username, password, ))
-                cursor.connection.commit()
+                
                 msg = 'SignUp successfully ! Login'
                 return render_template('index.html',signup_msg=msg)
         else:
@@ -102,7 +102,7 @@ def search():
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('SELECT title,Gname from proj')
         data = cursor.fetchall()
-        cursor.connection.commit()
+        
         return render_template("search.html",data=data)
     else:
         return redirect(url_for('index'))
@@ -118,7 +118,7 @@ def download(title):
         for f in os.listdir(dir):
             os.remove(os.path.join(dir, f))
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT UPfilename from proj WHERE title="%s"'%filename)
+        cursor.execute('SELECT UPfilename from proj WHERE title=%s'%filename)
         data = cursor.fetchone()
         try:
             resName=data['UPfilename']
@@ -163,7 +163,7 @@ def upload_file():
                 print("the username is",user_name)
                 cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
                 cursor.execute('INSERT INTO proj(username,UPfilename,title,GroupNo,year,Gname) values(%s,%s,%s,%s,%s,%s)',(user_name,filename,title,GroupNo,year,Gname))
-                cursor.connection.commit()
+                
                 return redirect(url_for('search'))
             except Exception as e :
                 print(e,"errro")
