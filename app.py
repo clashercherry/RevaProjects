@@ -118,7 +118,8 @@ def download(title):
         print(resName)
         location="download.pdf"
         blob_service.get_blob_to_path(container,resName,location)
-        return redirect(url_for(title))
+        res='download/'+title
+        return redirect(url_for(res))
         #return send_file(location)
     else:
         return redirect(url_for('index'))
