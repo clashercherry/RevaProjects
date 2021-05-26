@@ -1,3 +1,4 @@
+from io import BytesIO
 from flask import Flask, render_template, url_for, request,session
 from flask.helpers import send_file
 from flask_mysqldb import MySQL
@@ -8,15 +9,16 @@ import string
 from werkzeug.utils import redirect, secure_filename
 from azure.storage.blob import BlockBlobService
 import numpy as np
+import os
 
 # to activate the env--source env/bin/activate
 
 app = Flask(__name__)
 
-app.config['MYSQL_HOST'] = 'cherry.mysql.pythonanywhere-services.com'
-app.config['MYSQL_USER'] = 'cherry'
-app.config['MYSQL_PASSWORD'] = 'cherrypassword'
-app.config['MYSQL_DB'] = 'cherry$project'
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'root1234'
+app.config['MYSQL_DB'] = 'project'
 
 app.config['UPLOAD_FOLDER'] = 'Uploads'
 
@@ -105,23 +107,35 @@ def search():
     else:
         return redirect(url_for('index'))
 
-
+reqfiles=''
 @app.route('/download/<title>')
 def download(title):
+    global reqfiles
     if 'username' in session:
         filename=title
         print("working",filename)
+        dir = 'static/files'
+        for f in os.listdir(dir):
+            os.remove(os.path.join(dir, f))
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('SELECT UPfilename from proj WHERE title="%s"'%filename)
         data = cursor.fetchone()
-        resName=data['UPfilename']
-        print(resName)
-        location="download.pdf"
-        blob_service.get_blob_to_path(container,resName,location)
-        return send_file(location)
+        try:
+            resName=data['UPfilename']
+            print(resName)
+            reqfiles=resName
+            location="static/files/"+resName
+            blob_service.get_blob_to_path(container,resName,location)
+            #return send_file(location)
+            return redirect(url_for('preview'))
+        except:
+            return redirect(url_for('preview'))
     else:
         return redirect(url_for('index'))
-
+@app.route('/preview')
+def preview():
+    print("hii",reqfiles)
+    return render_template("preview.html",data=reqfiles)
 @app.route('/upload')
 def upload():
     if 'username' in session:
