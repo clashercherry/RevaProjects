@@ -15,10 +15,10 @@ import os
 
 app = Flask(__name__)
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'root1234'
-app.config['MYSQL_DB'] = 'project'
+app.config['MYSQL_HOST'] = 'cherry.mysql.pythonanywhere-services.com'
+app.config['MYSQL_USER'] = 'cherry'
+app.config['MYSQL_PASSWORD'] = 'cherrypassword'
+app.config['MYSQL_DB'] = 'cherry$project'
 
 app.config['UPLOAD_FOLDER'] = 'Uploads'
 
