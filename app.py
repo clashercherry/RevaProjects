@@ -114,9 +114,9 @@ def download(title):
     if 'username' in session:
         filename=title
         print("working",filename)
-        dir = '/home/cherry/RevaProjects/static/files'
-        for f in os.listdir(dir):
-            os.remove(os.path.join(dir, f))
+        #dir = '/home/cherry/RevaProjects/static/files'
+        #for f in os.listdir(dir):
+            #os.remove(os.path.join(dir, f))
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('SELECT UPfilename from proj WHERE title=%s'%filename)
         data = cursor.fetchone()
