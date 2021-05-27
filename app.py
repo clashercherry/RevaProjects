@@ -135,7 +135,6 @@ def download(title):
         return redirect(url_for('index'))
 @app.route('/preview')
 def preview():
-    print("hii",reqfiles)
     reqfiles=session['reqfiles']
     return render_template("preview.html",data=reqfiles)
 @app.route('/upload')
