@@ -114,17 +114,18 @@ def download(title):
     if 'username' in session:
         filename=title
         print("working",filename)
-        #dir = '/home/cherry/RevaProjects/static/files'
-        #for f in os.listdir(dir):
-            #os.remove(os.path.join(dir, f))
+        dir = '/static/files'
+        for f in os.listdir(dir):
+            os.remove(os.path.join(dir, f))
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('SELECT UPfilename from proj WHERE title=%s'%filename)
         data = cursor.fetchone()
         try:
             resName=data['UPfilename']
             print(resName)
+            session['reqfiles']=resName
             reqfiles=resName
-            location="/home/cherry/RevaProjects/static/files/"+resName
+            location="/static/files/"+resName
             blob_service.get_blob_to_path(container,resName,location)
             #return send_file(location)
             return redirect(url_for('preview'))
@@ -135,6 +136,7 @@ def download(title):
 @app.route('/preview')
 def preview():
     print("hii",reqfiles)
+    reqfiles=session['reqfiles']
     return render_template("preview.html",data=reqfiles)
 @app.route('/upload')
 def upload():
