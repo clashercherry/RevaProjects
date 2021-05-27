@@ -54,6 +54,7 @@ def login():
             account = cursor.fetchone()
             if account:
                 session['username']=request.form['username']
+                session['filenames']='None'
                 msg = 'Logged in successfully !'
                 return search()
             else:
