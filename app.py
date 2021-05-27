@@ -123,7 +123,7 @@ def download(title):
         try:
             resName=data['UPfilename']
             print(resName)
-            session['reqfiles']=resName
+            session['filenames'] = session.get('filenames', '') + resName + ","
             reqfiles=resName
             location="/static/files/"+resName
             blob_service.get_blob_to_path(container,resName,location)
@@ -135,7 +135,7 @@ def download(title):
         return redirect(url_for('index'))
 @app.route('/preview')
 def preview():
-    reqfiles=session['reqfiles']
+    reqfiles=session['filenames']
     return render_template("preview.html",data=reqfiles)
 @app.route('/upload')
 def upload():
