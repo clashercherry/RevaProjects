@@ -135,7 +135,7 @@ def download(title):
 @app.route('/preview')
 def preview():
     print("hii",reqfiles)
-    return render_template("preview.html",data=reqfiles)
+    return render_template("preview.html",data='hello')
 @app.route('/upload')
 def upload():
     if 'username' in session:
