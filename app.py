@@ -36,7 +36,7 @@ container = app.config['CONTAINER']
 app.secret_key = "super secret key"
 
 mysql = MySQL(app)
-
+session['filenames']=''
 
 @app.route('/')
 def index():
@@ -123,7 +123,7 @@ def download(title):
         try:
             resName=data['UPfilename']
             print(resName)
-            session['filenames'] = session.get('filenames', '') + resName + ","
+            session['filenames'] = resName
             reqfiles=resName
             location="/static/files/"+resName
             blob_service.get_blob_to_path(container,resName,location)
