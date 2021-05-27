@@ -36,7 +36,6 @@ container = app.config['CONTAINER']
 app.secret_key = "super secret key"
 
 mysql = MySQL(app)
-session['filenames']=''
 
 @app.route('/')
 def index():
