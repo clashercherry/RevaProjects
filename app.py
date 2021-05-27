@@ -128,14 +128,14 @@ def download(title):
             location="/static/files/"+resName
             blob_service.get_blob_to_path(container,resName,location)
             #return send_file(location)
-            return redirect(url_for('preview'))
+            return preview(reqfiles)
         except:
-            return redirect(url_for('preview'))
+            return preview(reqfiles)
     else:
         return redirect(url_for('index'))
 @app.route('/preview')
-def preview():
-    reqfiles=session['filenames']
+def preview(reqfiles):
+    reqfiles=reqfiles
     return render_template("preview.html",data=reqfiles)
 @app.route('/upload')
 def upload():
